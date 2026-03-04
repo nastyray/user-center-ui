@@ -1,23 +1,17 @@
 import Footer from '@/components/Footer';
 import { login } from '@/services/ant-design-pro/api';
-import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 import {
-  AlipayCircleOutlined,
   LockOutlined,
-  MobileOutlined,
-  TaobaoCircleOutlined,
   UserOutlined,
-  WeiboCircleOutlined,
 } from '@ant-design/icons';
 import {
   LoginForm,
-  ProFormCaptcha,
   ProFormCheckbox,
   ProFormText,
 } from '@ant-design/pro-components';
-import { Alert, message, Tabs } from 'antd';
+import { Alert, Divider, message, Space, Tabs } from 'antd';
 import React, { useState } from 'react';
-import { history, useModel } from 'umi';
+import { history, Link, useModel } from 'umi';
 import styles from './index.less';
 import { PLANET_LINK, SYSTEM_LOGO } from '@/constants';
 const LoginMessage: React.FC<{
@@ -135,9 +129,11 @@ const Login: React.FC = () => {
               marginBottom: 24,
             }}
           >
+          <Space  spilt={<Divider type="vertical" />}>
             <ProFormCheckbox noStyle name="autoLogin">
               自动登录
             </ProFormCheckbox>
+            <Link to="/user/register">新用户注册</Link>
             <a
               style={{
                 float: 'right',
@@ -148,6 +144,7 @@ const Login: React.FC = () => {
             >
               忘记密码 请联系管理员
             </a>
+          </Space>
           </div>
         </LoginForm>
       </div>
