@@ -7,6 +7,8 @@ import type { RunTimeLayoutConfig } from 'umi';
 import { history, Link, RequestConfig } from 'umi';
 import defaultSettings from '../config/defaultSettings';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
+import { message } from 'antd';
+import { stringify } from 'querystring';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -23,6 +25,27 @@ export const initialStateConfig = {
 export const request: RequestConfig = {
     prefix: '/api',
     timeout: 1000000,
+    responseInterceptors: [
+      async (response, options): Promise<any> => {
+        const res = await response.clone().json();
+        console.log(`do response res = ${JSON.stringify(res)}`)
+        if (res.code === 0) {
+          return res.data;
+        }
+        if (res.code === 40100){
+          message.error('请先登录');
+          history.replace({
+            pathname: '/user/login',
+            search: stringify({
+              redirect: location.pathname,
+            }),
+          });
+        } else {
+          message.error(res.description)
+        }
+        return res.data;
+      }
+    ]
 };
 
 /**
