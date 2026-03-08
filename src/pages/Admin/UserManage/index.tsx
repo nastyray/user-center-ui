@@ -2,7 +2,6 @@ import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable, TableDropdown } from '@ant-design/pro-components';
 import { useRef } from 'react';
 import { searchUsers } from '@/services/ant-design-pro/api';
-import { divide } from 'lodash';
 export const waitTimePromise = async (time: number = 100) => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -53,8 +52,12 @@ const columns: ProColumns<API.CurrentUser>[] = [
     copyable: true,
   },
   {
-    title: '用户状态',
+    title: '状态',
     dataIndex: 'userStatus',
+  },
+  {
+    title: '星球编号',
+    dataIndex: 'planetCode',
   },
   {
     title: '用户角色',

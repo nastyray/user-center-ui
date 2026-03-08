@@ -6,7 +6,8 @@ declare namespace API {
     id: number;
     username: string;
     userAccount: string;
-    avatarUrl: string;
+    planetCode: string;
+    avatarUrl?: string;
     gender: number;
     phone: string;
     email: string;
@@ -66,6 +67,7 @@ declare namespace API {
     userAccount?: string;
     userPassword?: string;
     checkPassword?: string;
+    planetCode?: string;
     type?: string;
   };
 
