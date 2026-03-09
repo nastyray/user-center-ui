@@ -23,7 +23,7 @@ export const initialStateConfig = {
 };
 
 export const request: RequestConfig = {
-    prefix: process.env.NODE_ENV === 'production' ? 'http://user-backend.cod-nav.cn/api' : '/api',
+    prefix: process.env.NODE_ENV === 'production' ? 'http://121.196.148.121:8000/api' : '/api',
     timeout: 1000000,
     responseInterceptors: [
       async (response, options): Promise<any> => {
